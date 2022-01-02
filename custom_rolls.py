@@ -8,18 +8,16 @@ class CustomRoll:
     def __init__(self, dice_nb, face_nb, roll_nb):
         self.dice_nb = dice_nb
         self.roll_nb = roll_nb
-        self.dice = Dice(dice_nb)
+        self.dice = Dice(face_nb)
         self.raw_result = 0
 
     def roll_all(self):
         self.raw_result = np.zeros(shape=(self.roll_nb), dtype=int)
         for i in range(len(self.raw_result)):
             self.raw_result[i] = self.dice.roll(self.dice_nb).sum()
-            print(self.raw_result[i])
-        print(self.raw_result)
 
 def main():
-    print("Hello world!")
+    print("=== Dicestistics tool! ===")
     face = int(input("How many faces for you dice: "))
     dice_nb = int(input("How many dice to roll in the same time: "))
     rolls = int(input("How many times do you want to repeat the roll: "))

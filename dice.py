@@ -9,12 +9,11 @@ class Dice:
 
     def roll(self, nb_rolls):
         self.last_roll = np.random.randint(low=1, high=self.face_nb+1, size=nb_rolls)
-        print("RickRoll!" , self.last_roll)
         return self.last_roll
 
 
 def main():
-    print("Hello world!")
+    print("=== Dicestistics tool! ===")
     face = int(input("How many faces for you dice: "))
     rolls = int(input("How many times do you want to roll the dice: "))
     a = Dice(face)
