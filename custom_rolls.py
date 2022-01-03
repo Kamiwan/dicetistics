@@ -1,6 +1,7 @@
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
 
 from dice import Dice
 
@@ -27,9 +28,33 @@ def main():
 
     # plot
     x = test.raw_result
+    
+    moy = np.mean(x)
+    std = np.std(x)
+    print("moyenne = " , moy)
+    print("ecart type = " , std)
+
     fig, ax = plt.subplots()
-    ax.hist(x, bins=np.arange(1,face*dice_nb+2), linewidth=0.5, edgecolor="white")
+    ax.hist(x, bins=np.arange(1,face*dice_nb+2)) # linewidth=0.5, edgecolor="white"
     ax.set(xlim=(1, face*dice_nb+1),xticks=np.arange(1, face*dice_nb+1))
+    ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+    title = "Histograms for rolling " + str(dice_nb) + " dice of " + str(face) + " faces " + str(rolls) + " times."
+    plt.title(title, loc='center')
+    plt.xlabel('Roll value')
+    plt.ylabel('Amount of roll')
+    plt.grid(axis="y")
+    
+    top = int(np.max(ax.get_ylim()))
+    print(top)
+    #plt.text(1,top*0.9,r'$\mu=100,\ \sigma=15$')
+    mean_str = "mean = " + str(np.around(moy, 3))
+    std_str = "$\sigma$ = " + str(np.around(std, 3))
+    gap_str = str(int(moy-(std*2))) + "< 95% of values < " + str(int(moy+(std*2)))
+    plt.text(1, top*0.9, mean_str, size=15, color='purple')
+    plt.text(1, top*0.8, std_str, size=15, color='purple')
+    plt.text(1, top*0.7, gap_str, size=10, color='purple')
+
+
     plt.show()
  
 if __name__ == "__main__":
