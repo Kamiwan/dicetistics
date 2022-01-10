@@ -56,10 +56,12 @@ def main():
     #plt.text(1,top*0.9,r'$\mu=100,\ \sigma=15$')
     mean_str = "mean = " + str(np.around(moy, 3))
     std_str = "$\sigma$ = " + str(np.around(std, 3))
-    gap_str = str(int(moy-(std*2))) + "< 95% of values < " + str(int(moy+(std*2)))
+    gap_str = str(int(moy-std)) + "< 68% of values < " + str(int(moy+std))
+    gap_2str = str(int(moy-(std*2))) + "< 95% of values < " + str(int(moy+(std*2)))
     plt.text(0, top*0.9, mean_str, size=15, color='purple')
     plt.text(0, top*0.8, std_str, size=15, color='purple')
     plt.text(0, top*0.7, gap_str, size=10, color='purple')
+    plt.text(0, top*0.6, gap_2str, size=10, color='purple')
 
 
     plt.show()
