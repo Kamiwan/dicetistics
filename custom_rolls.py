@@ -29,7 +29,6 @@ class CustomRoll:
         plt.title(title, loc='center')
         plt.xlabel('Roll value')
         plt.ylabel('Amount of roll')
-        plt.grid(axis="y")
 
         self.display_stats_on_hist(fig, ax)
         self.display_perc_on_hist(ax, counts, bins)
@@ -45,6 +44,7 @@ class CustomRoll:
         std_str = "$\sigma$ = " + str(np.around(std, 3))
         gap_str = str(int(moy-std)) + "< 68% of values < " + str(int(moy+std))
         gap_2str = str(int(moy-(std*2))) + "< 95% of values < " + str(int(moy+(std*2)))
+
         plt.text(max_face*self.dice_nb-1, top*0.9, mean_str, size=15, color='purple')
         plt.text(max_face*self.dice_nb-1, top*0.8, std_str, size=15, color='purple')
         plt.text(max_face*self.dice_nb-1, top*0.7, gap_str, size=10, color='purple')
