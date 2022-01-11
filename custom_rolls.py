@@ -21,8 +21,8 @@ class CustomRoll:
         max_face = np.max(self.dice.get_custom_faces())
         
         fig, ax = plt.subplots()
-        ax.hist(self.raw_result, bins=np.arange(0,self.dice.face_nb*self.dice_nb+2)) # linewidth=0.5, edgecolor="white"
-        ax.set(xlim=(0, max_face*self.dice_nb+1),xticks=np.arange(0, self.dice.face_nb*self.dice_nb+1))
+        counts, bins, bars = ax.hist(self.raw_result, bins=np.arange(0,max_face*self.dice_nb+2)) # linewidth=0.5, edgecolor="white"
+        ax.set(xlim=(0, max_face*self.dice_nb+1),xticks=np.arange(0, max_face*self.dice_nb+1))
         ax.yaxis.set_major_locator(MaxNLocator(integer=True))
         title = "Histograms for rolling " + str(self.dice_nb) + " dice of " + str(self.dice.face_nb) + " faces " + str(self.roll_nb) + " times."
         title = title + "\n dice faces = " + str(self.dice.custom_faces)
@@ -32,10 +32,12 @@ class CustomRoll:
         plt.grid(axis="y")
 
         self.display_stats_on_hist(fig, ax)
+        self.display_perc_on_hist(ax, counts, bins)
 
         plt.show()
         
     def display_stats_on_hist(self, fig, ax):
+        max_face = np.max(self.dice.get_custom_faces())
         moy = np.mean(self.raw_result)
         std = np.std(self.raw_result)
         top = int(np.max(ax.get_ylim()))
@@ -43,10 +45,16 @@ class CustomRoll:
         std_str = "$\sigma$ = " + str(np.around(std, 3))
         gap_str = str(int(moy-std)) + "< 68% of values < " + str(int(moy+std))
         gap_2str = str(int(moy-(std*2))) + "< 95% of values < " + str(int(moy+(std*2)))
-        plt.text(0, top*0.9, mean_str, size=15, color='purple')
-        plt.text(0, top*0.8, std_str, size=15, color='purple')
-        plt.text(0, top*0.7, gap_str, size=10, color='purple')
-        plt.text(0, top*0.6, gap_2str, size=10, color='purple')
+        plt.text(max_face*self.dice_nb-1, top*0.9, mean_str, size=15, color='purple')
+        plt.text(max_face*self.dice_nb-1, top*0.8, std_str, size=15, color='purple')
+        plt.text(max_face*self.dice_nb-1, top*0.7, gap_str, size=10, color='purple')
+        plt.text(max_face*self.dice_nb-1, top*0.6, gap_2str, size=10, color='purple')
+
+    def display_perc_on_hist(self, ax, counts, bins):
+        for i in range(len(counts)):
+            ax.text(x=bins[i]+0.5, y=counts[i],
+                s="{}%".format(np.around(counts[i]/self.roll_nb*100, 3)),
+                ha='center')
 
 def main():
     print("=== Dicestistics tool! ===")
@@ -67,7 +75,7 @@ if __name__ == "__main__":
 ## TODO
 ##
 ## [x] 1. put graphics display their in own methods
-## [ ] 2. add percentage of each histogram bar 
+## [x] 2. add percentage of each histogram bar 
 ## [ ] 3. add method to allow user to enter his custom dice with terminal
 ## [ ] 4. add comments to the code (check python system)
 ## [ ] 5. add Licence / Changelog

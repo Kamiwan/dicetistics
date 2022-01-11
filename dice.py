@@ -23,14 +23,21 @@ class Dice:
 
     def display_hist(self):
         fig, ax = plt.subplots()
-        ax.hist(self.last_roll, bins=np.arange(0,self.face_nb+2), linewidth=0.5, edgecolor="white")
+        counts, bins, bars = ax.hist(self.last_roll, bins=np.arange(0,self.face_nb+2), linewidth=0.5, edgecolor="white")
         ax.set(xlim=(0, self.face_nb+1),xticks=np.arange(0, self.face_nb+1))
         title = "Histograms for rolling a dice of " + str(self.face_nb) + " faces " + str(len(self.last_roll)) + " times."
         title = title + "\n dice faces = " + str(self.custom_faces)
         plt.title(title, loc='center')
         plt.xlabel('Roll value')
         plt.ylabel('Amount of roll')
+        self.display_perc_on_hist(ax, counts, bins)
         plt.show()
+
+    def display_perc_on_hist(self, ax, counts, bins):
+        for i in range(len(counts)):
+            ax.text(x=bins[i]+0.5, y=counts[i],
+                s="{}%".format(np.around(counts[i]/len(self.last_roll)*100, 3)),
+                ha='center')
 
 
 def main():
