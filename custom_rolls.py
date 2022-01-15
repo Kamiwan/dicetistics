@@ -62,8 +62,16 @@ def main():
     dice_nb = int(input("How many dice to roll in the same time: "))
     rolls = int(input("How many times do you want to repeat the roll: "))
 
-    custom_faces = np.array([0,0,0,0,1,1])
-    custom_dice = Dice(face, custom_faces)
+    custom_dice = Dice(face)
+
+    req_custom_face = input("Do you want to customize dice faces? (y:yes n:no)")
+    if req_custom_face == "y":
+        custom_dice.set_custom_faces_term()
+    elif req_custom_face == "n":
+        print("No custom faces, got it.")
+    else:
+        print("Wrong answer, classic faces used.")
+
     test = CustomRoll(dice_nb, custom_dice, rolls)
     test.roll_all()
     test.display_hist()
@@ -76,7 +84,7 @@ if __name__ == "__main__":
 ##
 ## [x] 1. put graphics display their in own methods
 ## [x] 2. add percentage of each histogram bar 
-## [ ] 3. add method to allow user to enter his custom dice with terminal
+## [x] 3. add method to allow user to enter his custom dice with terminal
 ## [ ] 4. add comments to the code (check python system)
 ## [ ] 5. add Licence / Changelog
 ## [ ] 6. use pylint to clean the code

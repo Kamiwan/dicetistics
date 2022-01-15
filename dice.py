@@ -7,7 +7,7 @@ class Dice:
         self.face_nb = face_nb
         self.last_roll = 0
         if np.any(custom_faces == None) :
-            self.custom_faces = np.arange(10, dtype=int)
+            self.custom_faces = np.arange(start=1,stop=face_nb+1, dtype=int)
         else:
             self.custom_faces = custom_faces
 
@@ -17,6 +17,12 @@ class Dice:
 
     def set_custom_faces(self, custom_faces):
         self.custom_faces = custom_faces
+
+    def set_custom_faces_term(self):
+        for i in range(self.face_nb):
+            str_req = "Enter the value of the face " + str(i+1) + " : "
+            val_face = int(input(str_req))
+            self.custom_faces[i] = val_face
 
     def get_custom_faces(self):
         return self.custom_faces
@@ -45,10 +51,18 @@ def main():
     face = int(input("How many faces for you dice: "))
     rolls = int(input("How many times do you want to roll the dice: "))
 
-    custom_dice = np.array([0,0,0,0,1,1])
-    a = Dice(face, custom_dice)
-    a.roll(rolls)
-    a.display_hist()
+    dice = Dice(face)
+    
+    req_custom_face = input("Do you want to customize dice faces? (y:yes n:no)")
+    if req_custom_face == "y":
+        dice.set_custom_faces_term()
+    elif req_custom_face == "n":
+        print("No custom faces, got it.")
+    else:
+        print("Wrong answer, classic faces used.")
+
+    dice.roll(rolls)
+    dice.display_hist()
  
 if __name__ == "__main__":
     main()
