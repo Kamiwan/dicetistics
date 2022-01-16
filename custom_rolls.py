@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
@@ -144,7 +147,7 @@ if __name__ == "__main__":
 ## [x] 2. add percentage of each histogram bar 
 ## [x] 3. add method to allow user to enter his custom dice with terminal
 ## [x] 4. add comments to the code (check python system)
-## [ ] 5. add Licence / Changelog
+## [x] 5. add Licence / Changelog
 ## [x] 6. use pylint to clean the code
 ## [ ] 7. create a windows executable
 ## [ ] 8. Update readme to allow user to execute program
