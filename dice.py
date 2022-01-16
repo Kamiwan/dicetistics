@@ -89,9 +89,6 @@ class Dice:
             ax (matplotlib.axes._subplots.AxesSubplot): The matplotlib subplot to write on
             counts (ndarray): Amount of occurrence of each bins (y-axis).
             bins (ndarray): Column values of the hist graph (x-axis).
-
-        Output:
-            ax (matplotlib.axes._subplots.AxesSubplot): modified by this method.
         """
         for i in range(len(counts)):
             ax.text(x=bins[i]+0.5, y=counts[i],
