@@ -149,6 +149,6 @@ if __name__ == "__main__":
 ## [x] 4. add comments to the code (check python system)
 ## [x] 5. add Licence / Changelog
 ## [x] 6. use pylint to clean the code
-## [ ] 7. create a windows executable
+## [x] 7. create a windows executable
 ## [ ] 8. Update readme to allow user to execute program
 ##

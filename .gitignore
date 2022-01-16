@@ -1,3 +1,6 @@
+*.spec
 ssh_github
 ssh_github.pub
 __pycache__/
+build/
+dist/
