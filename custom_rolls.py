@@ -36,12 +36,15 @@ class CustomRoll:
         plt.show()
         
     def display_stats_on_hist(self, fig, ax):
+        """
+        dd
+        """
         max_face = np.max(self.dice.get_custom_faces())
         moy = np.mean(self.raw_result)
         std = np.std(self.raw_result)
         top = int(np.max(ax.get_ylim()))
         mean_str = "mean = " + str(np.around(moy, 3))
-        std_str = "$\sigma$ = " + str(np.around(std, 3))
+        std_str = r"$\sigma$ = " + str(np.around(std, 3))
         gap_str = str(int(moy-std)) + "< 68% of values < " + str(int(moy+std))
         gap_2str = str(int(moy-(std*2))) + "< 95% of values < " + str(int(moy+(std*2)))
 
@@ -87,7 +90,7 @@ if __name__ == "__main__":
 ## [x] 3. add method to allow user to enter his custom dice with terminal
 ## [ ] 4. add comments to the code (check python system)
 ## [ ] 5. add Licence / Changelog
-## [ ] 6. use pylint to clean the code
+## [x] 6. use pylint to clean the code
 ## [ ] 7. create a windows executable
 ## [ ] 8. Update readme to allow user to execute program
 ##
