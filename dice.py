@@ -83,7 +83,7 @@ class Dice:
         plt.xlabel('Roll value')
         plt.ylabel('Amount of roll')
         self.display_perc_on_hist(ax, counts, bins)
-        plt.show()
+        plt.show(block=False)
 
     def display_perc_on_hist(self, ax, counts, bins):
         """Writes on a matplotlib bar chart the percentage of each bar.
@@ -116,6 +116,7 @@ def main():
 
     dice.roll(rolls)
     dice.display_hist()
+    input("Press [enter] to continue.")
  
 if __name__ == "__main__":
     main()

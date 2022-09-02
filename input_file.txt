@@ -1,0 +1,8 @@
+test1;5;1;1000;n;
+output_name;6;2;1000;y;0;0;0;0;1;1;
+output_name;5;3;1000;y;1;2;3;4;5;
+output_name;5;4;1000;y;1;2;3;4;5;
+output_name;5;5;1000;y;1;2;3;4;5;
+output_name;5;6;1000;y;1;2;3;4;5;
+output_name;5;7;1000;y;1;2;3;4;5;
+output_name;5;8;1000;y;1;2;3;4;5;

@@ -78,7 +78,7 @@ class CustomRoll:
         self.display_stats_on_hist(ax)
         self.display_perc_on_hist(ax, counts, bins)
 
-        plt.show()
+        plt.show(block=False)
         
     def display_stats_on_hist(self, ax):
         """Computes statistics on the current bar chart and write them on the plot.
@@ -134,14 +134,16 @@ def main():
     test = CustomRoll(dice_nb, custom_dice, rolls)
     test.roll_all()
     test.display_hist()
-    print(test.__doc__)
-    help(test.display_hist())
+    input("Press [enter] to continue.")
  
 if __name__ == "__main__":
     main()
 
 
 ## TODO
+##
+## Generate executable 
+## "python -m PyInstaller --onefile '.\automated_rolls.py'"
 ##
 ## [x] 1. put graphics display their in own methods
 ## [x] 2. add percentage of each histogram bar 
@@ -150,5 +152,11 @@ if __name__ == "__main__":
 ## [x] 5. add Licence / Changelog
 ## [x] 6. use pylint to clean the code
 ## [x] 7. create a windows executable
-## [ ] 8. Update readme to allow user to execute program
+## [x] 8. Update readme to allow user to execute program
+## [ ] 9. Move display bar chart in a new module
+## [ ] 10. Create a first UI
+## [ ] 11. Make a dice immutable.
+## [ ] 12. Do we need to store Dice result in an attribute?
+##
+## Single responsibility principle
 ##
